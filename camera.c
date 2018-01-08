@@ -2,23 +2,24 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define MAX_CMN_LEN 100 //length of the terminal command
+int main(){
 
-int main(int argc, char *argv[])
-{
-    char cmd[MAX_CMN_LEN] = "", **p;
+  char cmd[50];
+  char name[10];
+  char format[5]=".jpg";
+  char message[100]="Please enter the name of the picture you are about to take.";
+  printf("%s\n", message);
+  scanf("%s", name);
 
-    if (argc < 2) { /*no command specified*/
-      fprintf(stderr, "Usage: ./cam terminal_command ..."); //raspistill -o test.jpg -t 1000
-      exit(EXIT_FAILURE);
-    }
-    else {
-      strcat(cmd, argv[1]);
-      for (p = &argv[2]; *p; p++) {
-        strcat(cmd, " ");
-        strcat(cmd, *p);
-      }
-      system(cmd);
-    }
-    return 0;
+  if(strlen(name)>10){
+    printf("The name is too long\n");
+    exit(EXIT_FAILURE);
+  }
+  else{
+    strcat(name, format);
+    strcpy(cmd, "raspistill -o ");
+    strcat(cmd, name);
+    system(cmd);
+  }
+  return 0;
 }
