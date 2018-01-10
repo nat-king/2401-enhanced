@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-static const char FORMAT[]".jpg";
+static const char FORMAT[]=".jpg";
 
 void takePic(char name[]);
 void openPic(char name[]);
@@ -11,16 +11,16 @@ int getName(char name[]);// to be used in openPic to check if the name is in the
 int main(){
   char name[10];
   //greeting and menu options
-  char opt;
+  char *opt;
   printf("Please enter A to take a picture or B to open a picture\n");
-
-  if(opt ==A || opt == a){
+  scanf("%c", opt);
+  if(strcmp(opt, "A") == 0){
     printf("Please enter the name of the picture you want to take\n");
     scanf("%s", name);
     takePic(name);
     return 0;
   }
-  else if(opt ==B || opt == b){
+  else if(strcmp(opt, "B") == 0){
     printf("Please enter the name of the picture you want to open\n");
     scanf("%s", name);
     openPic(name);
@@ -67,10 +67,10 @@ void openPic(char name[]){
 
 }
 
-void saveName(){
+void saveName(char name[]){
   //add name to linked list as the data in node.
 }
-int getName(){
- //return 1 if true
+int getName(char name[]){
+  return 1; //return 1 if true
  //retunr 0 if false
 }
