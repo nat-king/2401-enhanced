@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "linked_list.h"
+
 static const char FORMAT[]=".jpg";
 
 void takePic(char name[]);
@@ -70,6 +72,8 @@ void openPic(char name[]){
 
 void saveName(char name[]){
   //add name to linked list as the data in node.
+  
+
 }
 int getName(char name[]){
   return 1; //return 1 if true
