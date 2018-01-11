@@ -11,16 +11,16 @@ int getName(char name[]);// to be used in openPic to check if the name is in the
 int main(){
   char name[10];
   //greeting and menu options
-  char *opt;
+  char opt;
   printf("Please enter A to take a picture or B to open a picture\n");
-  scanf("%c", opt);
-  if(strcmp(opt, "A") == 0){
+  scanf("%c", &opt);
+  if(opt == 'A'){
     printf("Please enter the name of the picture you want to take\n");
     scanf("%s", name);
     takePic(name);
     return 0;
   }
-  else if(strcmp(opt, "B") == 0){
+  else if(opt == 'B'){
     printf("Please enter the name of the picture you want to open\n");
     scanf("%s", name);
     openPic(name);
@@ -30,6 +30,7 @@ int main(){
     printf("Opps. that is not a valid option.\n");
     return 1;
   }
+  return 0;
 }
 
 
@@ -55,7 +56,7 @@ void takePic(char name[]){
 void openPic(char name[]){
   char cmd[50];
   //check for existance on name in the list using getName()
-  if(getName == 1){ //if it exists open the picture using EOG in a system call passing the name of the picture.
+  if(getName(name) == 1){ //if it exists open the picture using EOG in a system call passing the name of the picture.
     strcat(name, FORMAT);
     strcpy(cmd, "eog ");
     strcat(cmd, name);
