@@ -14,7 +14,7 @@
 typedef struct  picInfo {
         struct picInfo *next;
         char picName[NAME_LENGTH];
-} picInfo;
+} PicInfo;
 
 #endif
 
