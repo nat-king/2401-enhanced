@@ -14,27 +14,56 @@ int main(){
   PicInfo *empHead = NULL;   //head node
   char name[10];
   //greeting and menu options
-  char opt;
-  printf("Please enter A to take a picture or B to open a picture\n");
-  scanf("%c", &opt);
-  if(opt == 'A'){
+  unsigned int option: 3= 5;
+  printf("Please enter 1 to take a picture, 2 to open a picture, or 3 to quit.\n");
+  scanf ("%d", option);
+
+  switch (option){
+    case 1:
     printf("Please enter the name of the picture you want to take\n");
     scanf("%s", name);
     takePic(name);
     saveName(&empHead, name);
-    return 0;
-  }
-  else if(opt == 'B'){
+    break;
+    case 2:
     printf("Please enter the name of the picture you want to open\n");
     scanf("%s", name);
     openPic(empHead, name);
-    return 0;
+    break;
+    case 3:
+    printf("See you next time!\n");
+    default:
+    printf("Opps. that is not a valid option, try again!\n");
+    scanf("%c", &opt);
+
   }
-  else{
-    printf("Opps. that is not a valid option.\n");
-    return 1;
-  }
-  return 0;
+
+
+
+
+  //
+  // scanf("%c", &opt);
+  // if(opt == 'A'){
+  //   printf("Please enter the name of the picture you want to take\n");
+  //   scanf("%s", name);
+  //   takePic(name);
+  //   saveName(&empHead, name);
+  // }
+  // else if(opt == 'B'){
+  //   printf("Please enter the name of the picture you want to open\n");
+  //   scanf("%s", name);
+  //   openPic(empHead, name);
+  //   //return 0;
+  // }
+  // else if (opt == 'Q'){
+  //   printf("See you next time!\n");
+  //   return 0;
+  // }
+  //
+  // else{
+  //   printf("Opps. that is not a valid option, try again!\n");
+  //   scanf("%c", &opt);
+  // }
 }
 
 
@@ -90,14 +119,14 @@ PicInfo *saveName(PicInfo **head, char *name){
   }
   temp->next = NULL;
   temp1->next = temp;
-  return temp; 
+  return temp;
 }
 
 
 int getName(PicInfo *head, char name[]){
   PicInfo *node;
   node = head; //get reference of head
-  
+
   while(node!= NULL && node->next != NULL){
     if(strcmp(node->picName, name) == 0){
       return 1;  // if found the name in the list
