@@ -5,7 +5,7 @@
 // DEFINESD
 
 
-#define NAME_LENGTH 32
+#define NAME_LENGTH 10
 
 
 /************************************************************************/
@@ -14,7 +14,7 @@
 typedef struct  picInfo {
         struct picInfo *next;
         char picName[NAME_LENGTH];
-} picInfo;
+} PicInfo;
 
 #endif
 
