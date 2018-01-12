@@ -6,12 +6,12 @@
 static const char FORMAT[]=".jpg";
 
 void takePic(char name[]);
-void openPic(char name[]);
+void openPic(PicInfo *head, char name[]);
 PicInfo *saveName(PicInfo **head, char *name);
-int getName(PicInfo *head, char *name);// to be used in openPic to check if the name is in the list.
+int getName(PicInfo *head, char name[]);// to be used in openPic to check if the name is in the list.
 
 int main(){
-  struct picInfo *empHead = NULL;   //head node
+  PicInfo *empHead = NULL;   //head node
   char name[10];
   //greeting and menu options
   char opt;
@@ -21,12 +21,13 @@ int main(){
     printf("Please enter the name of the picture you want to take\n");
     scanf("%s", name);
     takePic(name);
+    saveName(&empHead, name);
     return 0;
   }
   else if(opt == 'B'){
     printf("Please enter the name of the picture you want to open\n");
     scanf("%s", name);
-    openPic(name);
+    openPic(empHead, name);
     return 0;
   }
   else{
@@ -56,10 +57,10 @@ void takePic(char name[]){
 
 // To do:
 
-void openPic(char name[]){
+void openPic(PicInfo *head, char name[]){
   char cmd[50];
   //check for existance on name in the list using getName()
-  if(getName(empHead, *name) == 1){ //if it exists open the picture using EOG in a system call passing the name of the picture.
+  if(getName(head, name) == 1){ //if it exists open the picture using EOG in a system call passing the name of the picture.
     strcat(name, FORMAT);
     strcpy(cmd, "eog ");
     strcat(cmd, name);
@@ -93,7 +94,7 @@ PicInfo *saveName(PicInfo **head, char *name){
 }
 
 
-int getName(PicInfo *head, char *name){
+int getName(PicInfo *head, char name[]){
   PicInfo *node;
   node = head; //get reference of head
   
