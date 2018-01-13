@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+// #include <conio.h>
 #include "linked_list.h"
 
 static const char FORMAT[]=".jpg";
@@ -9,34 +10,49 @@ void takePic(char name[]);
 void openPic(PicInfo *head, char name[]);
 PicInfo *saveName(PicInfo **head, char *name);
 int getName(PicInfo *head, char name[]);// to be used in openPic to check if the name is in the list.
+int menu();
+
 
 int main(){
+
+  menu();
+}
+
+int menu(){
   PicInfo *empHead = NULL;   //head node
   char name[10];
-  //greeting and menu options
-  char opt;
-  printf("Please enter A to take a picture or B to open a picture\n");
-  scanf("%c", &opt);
-  if(opt == 'A'){
+  char opt= 'Y';
+  int option;
+
+  do {
+
+  printf("Please enter 1 to take a picture, 2 to open a picture, or 3 to quit.\n");
+  scanf ("%d", &option);
+
+  switch (option){
+    case 1:
     printf("Please enter the name of the picture you want to take\n");
     scanf("%s", name);
     takePic(name);
     saveName(&empHead, name);
-    return 0;
-  }
-  else if(opt == 'B'){
+    break;
+    case 2:
     printf("Please enter the name of the picture you want to open\n");
     scanf("%s", name);
     openPic(empHead, name);
-    return 0;
+    break;
+    case 3:
+    printf("See you next time!\n");
+    exit(0);
+    default:
+    printf("Opps. that is not a valid option, try again!\n");
   }
-  else{
-    printf("Opps. that is not a valid option.\n");
-    return 1;
-  }
+  printf("\n\n Do you want to continue? Y/N \n");
+  scanf("%c", &opt);
+} while(opt == 'Y');
+scanf("%c", &opt);
   return 0;
 }
-
 
 void takePic(char name[]){
 
@@ -90,14 +106,14 @@ PicInfo *saveName(PicInfo **head, char *name){
   }
   temp->next = NULL;
   temp1->next = temp;
-  return temp; 
+  return temp;
 }
 
 
 int getName(PicInfo *head, char name[]){
   PicInfo *node;
   node = head; //get reference of head
-  
+
   while(node!= NULL && node->next != NULL){
     if(strcmp(node->picName, name) == 0){
       return 1;  // if found the name in the list
