@@ -26,8 +26,8 @@ void main(){
       case 1:
       printf("Please enter the name of the picture you want to take\n");
       scanf("%s", name);
-      takePic(name);
       saveName(&empHead, name);
+      takePic(name);
       break;
       case 2:
       printf("Please enter the name of the picture you want to open\n");
@@ -41,6 +41,7 @@ void main(){
       printf("Opps. that is not a valid option, try again!\n");
     }
     printf("\n\n Do you want to continue? Y/N \n");
+    scanf("%c", &opt);
     scanf("%c", &opt);
   } while(opt == 'Y' || opt == 'y');
 }
