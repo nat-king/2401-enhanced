@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-// #include <conio.h>
 #include "linked_list.h"
 
 static const char FORMAT[]=".jpg";
@@ -10,48 +9,40 @@ void takePic(char name[]);
 void openPic(PicInfo *head, char name[]);
 PicInfo *saveName(PicInfo **head, char *name);
 int getName(PicInfo *head, char name[]);// to be used in openPic to check if the name is in the list.
-int menu();
 
 
-int main(){
+void main(){
 
-  menu();
-}
-
-int menu(){
   PicInfo *empHead = NULL;   //head node
   char name[10];
   char opt= 'Y';
   int option;
 
   do {
+    printf("Please enter 1 to take a picture, 2 to open a picture, or 3 to quit.\n");
+    scanf ("%d", &option);
 
-  printf("Please enter 1 to take a picture, 2 to open a picture, or 3 to quit.\n");
-  scanf ("%d", &option);
-
-  switch (option){
-    case 1:
-    printf("Please enter the name of the picture you want to take\n");
-    scanf("%s", name);
-    takePic(name);
-    saveName(&empHead, name);
-    break;
-    case 2:
-    printf("Please enter the name of the picture you want to open\n");
-    scanf("%s", name);
-    openPic(empHead, name);
-    break;
-    case 3:
-    printf("See you next time!\n");
-    exit(0);
-    default:
-    printf("Opps. that is not a valid option, try again!\n");
-  }
-  printf("\n\n Do you want to continue? Y/N \n");
-  scanf("%c", &opt);
-} while(opt == 'Y');
-scanf("%c", &opt);
-  return 0;
+    switch (option){
+      case 1:
+      printf("Please enter the name of the picture you want to take\n");
+      scanf("%s", name);
+      takePic(name);
+      saveName(&empHead, name);
+      break;
+      case 2:
+      printf("Please enter the name of the picture you want to open\n");
+      scanf("%s", name);
+      openPic(empHead, name);
+      break;
+      case 3:
+      printf("See you next time!\n");
+      exit(1);
+      default:
+      printf("Opps. that is not a valid option, try again!\n");
+    }
+    printf("\n\n Do you want to continue? Y/N \n");
+    scanf("%c", &opt);
+  } while(opt == 'Y' || opt == 'y');
 }
 
 void takePic(char name[]){
@@ -60,10 +51,8 @@ void takePic(char name[]){
 
   if(strlen(name)>10){
     printf("The name is too long, please try again\n");
-    exit(EXIT_FAILURE);//replace with return to menu
   }
   else{
-    //saveName(name);//saves name to the linked list.
     strcat(name, FORMAT);
     strcpy(cmd, "raspistill -o ");
     strcat(cmd, name);
