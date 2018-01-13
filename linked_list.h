@@ -2,7 +2,7 @@
 #define LINKED_LIST_2401_HEADER 1
 
 /************************************************************************/
-// DEFINESD
+// DEFINED
 
 
 #define NAME_LENGTH 10
@@ -17,4 +17,3 @@ typedef struct  picInfo {
 } PicInfo;
 
 #endif
-
